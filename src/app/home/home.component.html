@@ -1,0 +1,111 @@
+<div class="container-fluid">
+
+    <!--Card com as informações-->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-11 mt-5">
+
+            <div class="card-columns mt-3">
+
+                <div class="card bg-primary text-light mr-1" style="max-width:18rem;">
+
+                    <div class="card-body">
+                        <div class="float-right mt-4">
+                            <i class="fas fa-fw fa-home" style="font-size:4rem;"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title ">Imóveis</h5>
+                            <h1 class="card-text">{{totais.imoveis}}</h1>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <a routerLink="/imovel" class="card-link text-light"><i class="fas fa-eye mr-1"></i>Imóveis</a>
+                    </div>
+
+                </div>
+
+                <div class="card bg-danger text-light mr-1" style="max-width:18rem;">
+
+                    <div class="card-body">
+                        <div class="float-right mt-4">
+                            <i class="fas fa-hand-holding-usd" style="font-size:4rem;"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title">Alugueis Atrasados</h5>
+                            <h1 class="card-text">0</h1>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <a routerLink="/aluguel" class="card-link text-light"><i class="fas fa-eye mr-1"></i>Alugueis</a>
+                    </div>
+
+                </div>
+                    
+                <div class="card bg-success text-light mr-1" style="max-width:18rem;">
+
+                    <div class="card-body">
+                        <div class="float-right mt-4">
+                            <i class="fas fa-key" style="font-size:4rem;"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title">Locações</h5>
+                            <h1 class="card-text">{{totais.locacoes}}</h1>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <a routerLink="/locacao" class="card-link text-light"><i class="fas fa-eye mr-1"></i>Locações</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card-columns mt-3">
+
+                <div class="card bg-info text-light mr-1" style="max-width:18rem;">
+
+                    <div class="card-body">
+                        <div class="float-right mt-4">
+                            <i class="fas fa-fw fa-user" style="font-size:4rem;"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title">Inquilinos</h5>
+                            <h1 class="card-text">{{totais.inquilinos}}</h1>
+                        </div>
+                    </div>
+
+                    <div class="card-footer">
+                        <a routerLink="/inquilino" class="card-link text-light"><i class="fas fa-eye mr-1"></i>Inquilinos</a>
+                    </div>
+
+                </div>
+
+                <div class="card bg-warning text-dark" style="max-width:18rem;">
+
+                    <div class="card-body">
+                        <div class="float-right mt-4">
+                            <i class="fas fa-fw fa-user-tie" style="font-size:4rem;"></i>
+                        </div>
+                        <div>
+                            <h5 class="card-title">Proprietários</h5>
+                            <h1 class="card-text">{{totais.proprietarios}}</h1>
+                        </div>
+                            
+                    </div>
+
+                    <div class="card-footer">
+                        <a routerLink="/proprietario" class="card-link text-dark"><i class="fas fa-eye mr-1"></i>Proprietários</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

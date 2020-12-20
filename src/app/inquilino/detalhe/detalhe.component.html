@@ -1,0 +1,100 @@
+<div class="container-fluid">
+
+    <div class="row">
+
+        <div class="col-xl-12">
+
+            <a routerLink="/inquilino" class="btn btn-secondary my-3">
+                <i class="fas fa-undo-alt mr-1"></i>Voltar
+            </a>
+                
+            <div class="card mb-4">
+                                        
+                <div class="card-header">
+                    <i class="fas fa-fw fa-table mr-1"></i>Dados do Inquilino
+                </div>
+                                        
+                <div class="card-body">
+    
+                    <div class="row my-1">
+    
+                        <div class="col-xl-8">
+    
+                            <div class="card mt-1">
+                                            
+                                <div class="card-header">
+                                    <h5 class="card-title">Dados Pessoais</h5>
+                                </div>
+                                            
+                                <div class="card-body">
+                                    <h6 class="mb-0">Nome</h6>
+                                    <span>{{inquilino.nome}}</span>
+    
+                                    <h6 class="mt-2 mb-0">Nacionalidade</h6>
+                                    <span>{{inquilino.nacionalidade}}</span>
+    
+                                    <h6 class="mt-2 mb-0">Data de Nascimento</h6>
+                                    <span>{{inquilino.dataNascimento}}</span>
+                                                                
+                                    <h6 class="mt-2 mb-0">Estado Civil</h6>
+                                    <span>{{inquilino.estadoCivil}}</span>
+    
+                                    <h6 class="mt-2 mb-0">CPF</h6>
+                                    <span>{{inquilino.cpf | cpf}}</span>
+    
+                                    <h6 class="mt-2 mb-0">RG</h6>
+                                    <span>{{inquilino.identidade}}</span>
+    
+                                    <h6 class="mt-2 mb-0">Orgão Emissor</h6>
+                                    <span>{{inquilino.orgaoEmissor}}</span>
+    
+                                    <h6 class="mt-2 mb-0">Data de Expedição</h6>
+                                    <span>{{inquilino.dataExpedicao}}</span>
+
+                                    <h6 class="mt-2 mb-0">Salário</h6>
+                                    <span>{{inquilino.salario | currency:'BRL' }}</span>
+    
+                                    <h6 class="mt-2 mb-0">Endereço</h6>
+                                    <span>{{inquilino.endereco | endereco}}</span>
+                                </div>
+    
+                            </div>
+                                                    
+                        </div>
+    
+                        <div class="col-xl-4">
+    
+                            <div class="card mt-1">
+                                            
+                                <div class="card-header">
+                                    <h5 class="card-title">Contatos</h5>
+                                </div>
+                                            
+                                <div class="card-body">
+                                    <h6 class="mb-0">Email</h6>
+                                    <span>{{inquilino.email}}</span>
+    
+                                    <h6 class="mt-2 mb-0">Número de Telefone/Celular</h6>
+                                    <div >
+                                        <ng-container *ngFor="let c of inquilino.contatos">
+                                            <div *ngIf="c.tipoContato === 'Celular'">{{c.numero | celular}}</div>
+                                            <div *ngIf="c.tipoContato === 'Telefone'">{{c.numero | telefone}}</div>
+                                        </ng-container>
+                                    </div>
+                                </div>
+    
+                            </div>
+                             
+                        </div>
+    
+                    </div>
+                            
+                </div>
+                        
+            </div>
+                  
+        </div>
+    
+    </div>
+
+</div>

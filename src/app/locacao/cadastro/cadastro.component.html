@@ -1,0 +1,180 @@
+<div class="container-fluid">
+    <div class="row justify-content-center">
+
+        <div class="col-xl-12">
+
+            <a routerLink="/locacao" class="btn btn-secondary mt-3">
+                <i class="fas fa-undo-alt mr-1"></i>Voltar
+            </a>
+
+
+            <div class="card mt-3 mb-4">
+
+                <div class="card-header">
+                    <i class="fas fa-file-contract mr-1"></i>Locação de Imóvel
+                </div>
+                    
+                <div class="card-body">
+
+                    <form [formGroup]="formulario" (ngSubmit)="onSubmit()">
+
+                        <div class="row justify-content-center mt-3">
+
+                            <div class="col-xl-9">
+
+                                <fieldset>
+                                    <legend>Dados Gerais</legend>
+
+                                    <div class="form-group">
+                                        <label class="mb-0" for="inquilinos">Inquilino</label>
+                                        <select formControlName="inquilino" id="inquilinos" class="form-control" [ngClass]="getClassErro('inquilino')">
+                                            <!--Lista de Inquilinos-->
+                                            <ng-container *ngFor="let inq of inquilinos">
+                                                <option [value]="inq.idPessoa">{{inq.nome}}</option>
+                                            </ng-container>
+                                        </select>
+
+                                        <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('inquilino')" [campo]="formulario.get('inquilino')"></feedback-campo>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label  class="mb-0" for="proprietarios">Proprietário</label>
+                                        <select formControlName="proprietario" id="proprietarios" class="form-control" [ngClass]="getClassErro('proprietario')" (change)="onChangeProp($event.target.value)" >
+                                            <!--Lista de Proprietarios-->
+                                            <ng-container *ngFor="let prop of proprietarios">
+                                                <option [value]="prop.idPessoa">{{prop.nome}}</option>
+                                            </ng-container>
+                                        </select>
+
+                                        <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('proprietario')" [campo]="formulario.get('proprietario')"></feedback-campo>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label  class="mb-0" for="imoveis">Imóvel</label>
+                                        <select formControlName="imovel" id="imoveis" class="form-control" [ngClass]="getClassErro('imovel')" (change)="onChangeImovel($event.target.value)">
+                                            <!--Lista de Imoveis do Proprietarios-->
+                                            <ng-container *ngFor="let imovel of imoveis">
+                                                <option [value]="imovel.idImovel">{{imovel.endereco | endereco}}</option>
+                                            </ng-container>
+                                        </select>
+
+                                        <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('imovel')" [campo]="formulario.get('imovel')"></feedback-campo>
+
+                                    </div>
+
+                                </fieldset>
+
+                            </div>
+
+                        </div>
+
+                        <div class="row justify-content-center mt-3">
+
+                            <div class="col-xl-9">
+
+                                <fieldset>
+
+                                    <legend>Dados da Locação</legend>
+
+                                    <div class="form-row">
+
+                                        <div class="col-xl-6">
+
+                                            <div class="form-group">
+                                                <label class="mb-0" for="valorAluguel">Valor do Aluguel</label>
+                                                <input type="number" min="0" step="0,01" class="form-control" [ngClass]="getClassErro('preco')" id="valorAluguel" formControlName="preco">
+                                                
+                                                <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('preco')" [campo]="formulario.get('preco')"></feedback-campo>
+                                                
+                                            </div>
+                                                    
+                                        </div>
+
+                                        <div class="col-xl-6">
+
+                                            <div class="form-group">
+                                                <label class="mb-0" for="dataLocacao">Data da Locação</label>
+                                                <input type="date" class="form-control" id="dataLocacao" formControlName="data" [ngClass]="getClassErro('data')">
+                                            
+                                                <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('data')" [campo]="formulario.get('data')"></feedback-campo>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-row">
+
+                                        <div class="col-xl-4">
+
+                                            <div class="form-group">
+                                                <label class="mb-0" for="tempoContrato">Tempo de Contrato (meses)</label>
+                                                <input type="number" (change)="onChangeTempo($event.target.value)"  min="3" class="form-control" [ngClass]="getClassErro('tempo')" id="tempoContrato" formControlName="tempo" placeholder="Tempo em meses">
+                                                
+                                                <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('tempo')" [campo]="formulario.get('tempo')"></feedback-campo>
+                                            
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-xl-4">
+
+                                            <div class="form-group">
+                                                <label class="mb-0" for="inicioContrato">Início do Contrato</label>
+                                                <input type="date" min="3" class="form-control" id="inicioContrato" formControlName="dataInicio" [ngClass]="getClassErro('dataInicio')">
+                                                
+                                                <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('dataInicio')" [campo]="formulario.get('dataInicio')"></feedback-campo>
+                                            
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-xl-4">
+
+                                            <div class="form-group">
+                                                <label class="mb-0" for="terminoContrato">Termino do Contrato</label>
+                                                <input type="date" min="3" class="form-control" id="terminoContrato" formControlName="dataTermino" [ngClass]="getClassErro('dataTermino')">
+                                            
+                                                <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('dataTermino')" [campo]="formulario.get('dataTermino')"></feedback-campo>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <button type="button" class="btn btn-danger mt-2 float-right" (click)="reset()">
+                                        <i class="fas fa-ban mr-1"></i>Cancelar
+                                    </button>
+                  
+                                    <button type="submit" class="btn btn-success mr-1 mt-2 float-right">
+                                     <i class="far fa-save mr-1"></i>Alugar
+                                    </button>
+             
+                                </fieldset>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+            <div class="alert alert-success mt-3" *ngIf="sucesso">
+                <strong>Sucesso!</strong> Locação Realizada Com Sucesso!
+            </div>
+
+            <div class="alert alert-danger mt-3" *ngIf="erro">
+                <strong>Erro!</strong> Erro Realizar Locação!
+            </div>
+
+        </div>
+
+    </div>
+</div> 
