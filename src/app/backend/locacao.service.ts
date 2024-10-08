@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { api_route } from './api.route';
 import { Locacao } from './models/locacao.model';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { PageLocacao } from './models/pages/locacao.page.model';
 import { ProprietarioService } from './proprietario.service';
 import { Pessoa } from './models/pessoa.model';
@@ -19,17 +18,17 @@ export class LocacaoService{
     private local_route = `${api_route}/locacao`;
     
     constructor(
-        private http: Http,
+        private http: HttpClient,
         private proprietarioService:ProprietarioService,
         private inquilinoService:InquilinoService,
         private imovelService:ImovelService){}
 
     public alugar(locacao:LocacaoDTO):Observable<Locacao>{
-        return this.http.post(this.local_route,locacao).pipe(map(res => res.json()));
+        return this.http.post<Locacao>(this.local_route,locacao);
     }
 
     public atualizar(locacao:LocacaoDTO):Observable<Locacao>{
-        return this.http.put(this.local_route,locacao).pipe(map(res => res.json()));
+        return this.http.put<Locacao>(this.local_route,locacao);
     }
 
     public excluir(id:string):Observable<any>{
@@ -37,30 +36,27 @@ export class LocacaoService{
     }
 
     public buscarPorId(id:string):Observable<Locacao>{
-        return this.http.get(`${this.local_route}/${id}`).pipe(map(res => res.json()));
+        return this.http.get<Locacao>(`${this.local_route}/${id}`);
     }
 
     public buscarLocacoesInquilino(id:string,page:number,size:number):Observable<PageLocacao>{
-        return this.http.get(`${this.local_route}/inquilino/${id}?page=${page}&size=${size}`)
-            .pipe(map(res => res.json()));
+        return this.http.get<PageLocacao>(`${this.local_route}/inquilino/${id}?page=${page}&size=${size}`);
     }
 
     public buscarLocacoesInquilinosPorNome(nome:string,page:number,size:number):Observable<PageLocacao>{
-        return this.http.get(`${this.local_route}/inquilino/search?nome=${nome}&page=${page}&size=${size}`)
-            .pipe(map(res => res.json()));
+        return this.http.get<PageLocacao>(`${this.local_route}/inquilino/search?nome=${nome}&page=${page}&size=${size}`);
     }
 
     public buscarLocacoesProprietariosPorNome(nome:string,page:number,size:number):Observable<PageLocacao>{
-        return this.http.get(`${this.local_route}/proprietario/search?nome=${nome}&page=${page}&size=${size}`)
-            .pipe(map(res => res.json()));
+        return this.http.get<PageLocacao>(`${this.local_route}/proprietario/search?nome=${nome}&page=${page}&size=${size}`);
     }
 
     public buscarTodos(page:number,size:number):Observable<PageLocacao>{
-        return this.http.get(`${this.local_route}?page=${page}&size=${size}`).pipe(map(res => res.json()));
+        return this.http.get<PageLocacao>(`${this.local_route}?page=${page}&size=${size}`);
     }
 
     public buscarTodosSemPagina():Observable<Array<Locacao>>{
-        return this.http.get(`${this.local_route}/all`).pipe(map(res => res.json()));
+        return this.http.get<Array<Locacao>>(`${this.local_route}/all`);
     }
 
     //Metodos que encapsulam outros metodos de outros serviços

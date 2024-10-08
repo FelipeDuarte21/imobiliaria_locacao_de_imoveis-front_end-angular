@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { PagePessoa } from './models/pages/pessoa.page.model';
 import { Pessoa } from './models/pessoa.model';
@@ -17,20 +16,20 @@ export class ProprietarioService{
   private local_route_especifica = `${this.pessoaService.local_route}/proprietarios`;
 
   constructor(
-    private http: Http,
+    private http: HttpClient,
     private enderecoService:EnderecoService,
     private pessoaService: PessoaService) {}
 
   public getTodos(page:number,size:number): Observable<PagePessoa>{
-    return this.http.get(`${this.local_route_especifica}?page=${page}&size=${size}`).pipe(map(res => res.json()));
+    return this.http.get<PagePessoa>(`${this.local_route_especifica}?page=${page}&size=${size}`);
   }
 
   public getTodosSemPagina():Observable<Array<Pessoa>>{
-    return this.http.get(`${this.local_route_especifica}/all`).pipe(map(res => res.json()));
+    return this.http.get<Array<Pessoa>>(`${this.local_route_especifica}/all`);
   }
 
   public getPorNome(nome:string,page:number,size:number): Observable<PagePessoa>{
-    return this.http.get(`${this.local_route_especifica}/search?nome=${nome}&page=${page}&size=${size}`).pipe(map(res => res.json()));
+    return this.http.get<PagePessoa>(`${this.local_route_especifica}/search?nome=${nome}&page=${page}&size=${size}`);
   }
 
   public getPorId(id:string): Observable<Pessoa>{

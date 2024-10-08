@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { ProprietarioService } from './proprietario.service';
 import { EnderecoService } from './endereco.service';
@@ -15,7 +15,7 @@ import { HomeService } from './home.service';
   declarations: [],
   imports: [
     CommonModule,
-    HttpModule
+    HttpClientModule
   ],
   providers: [
     ProprietarioService,

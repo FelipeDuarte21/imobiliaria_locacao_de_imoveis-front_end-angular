@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { EnderecoAPI } from './models/endereco.api.model';
 
 @Injectable()
@@ -9,10 +8,10 @@ export class EnderecoService{
 
     private api_endereco:string = "https://viacep.com.br/ws";
 
-    constructor(private http: Http){}
+    constructor(private http: HttpClient){}
 
     buscarPorCep(cep:string): Observable<EnderecoAPI>{
-        return this.http.get(`${this.api_endereco}/${cep}/json/`).pipe(map(res => res.json()));
+        return this.http.get<EnderecoAPI>(`${this.api_endereco}/${cep}/json/`);
     }
 
 }
