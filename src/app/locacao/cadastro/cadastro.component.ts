@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 
 import { LocacaoService } from 'src/app/backend/locacao.service';
 
@@ -16,7 +16,7 @@ import { LocacaoDTO } from 'src/app/backend/models/locacao.dto.model';
 })
 export class CadastroComponent implements OnInit {
 
-  public formulario: FormGroup;
+  public formulario: UntypedFormGroup;
 
   public proprietarios:Array<Pessoa>;
   public inquilinos:Array<Pessoa>;
@@ -29,7 +29,7 @@ export class CadastroComponent implements OnInit {
 
   constructor(
     private locacaoService:LocacaoService,
-    private fb: FormBuilder
+    private fb: UntypedFormBuilder
   ) { }
 
   ngOnInit() {
@@ -119,13 +119,13 @@ export class CadastroComponent implements OnInit {
     
   }
 
-  private verificaCamposFormulario(formGroup: FormGroup){
+  private verificaCamposFormulario(formGroup: UntypedFormGroup){
 
     Object.keys(formGroup.controls).forEach(campo => {
 
       const controle = formGroup.get(campo);
       controle.markAsTouched();
-      if(controle instanceof FormGroup){
+      if(controle instanceof UntypedFormGroup){
         this.verificaCamposFormulario(controle);
       }
 

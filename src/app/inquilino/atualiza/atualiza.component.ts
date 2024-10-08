@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormGroup,UntypedFormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { InquilinoService } from 'src/app/backend/inquilino.service';
 import { CepPipe } from 'src/app/pipes/cep.pipe';
@@ -29,7 +29,7 @@ export class AtualizaComponent implements OnInit {
   public maskCelular = ['(',/\d/,/\d/,')',' ','9',/\d/,/\d/,/\d/,/\d/,'-',/\d/,/\d/,/\d/,/\d/];
   public maskTelefone = ['(',/\d/,/\d/,')',' ',/\d/,/\d/,/\d/,/\d/,'-',/\d/,/\d/,/\d/,/\d/];
 
-  public formulario:FormGroup;
+  public formulario:UntypedFormGroup;
 
   private inq:PessoaDTO;
 
@@ -39,7 +39,7 @@ export class AtualizaComponent implements OnInit {
   private inscricao:Subscription;
 
   constructor(
-    private formBuild: FormBuilder,
+    private formBuild: UntypedFormBuilder,
     private route: ActivatedRoute, 
     private service: InquilinoService, 
     private cepMasc: CepPipe,
@@ -177,13 +177,13 @@ export class AtualizaComponent implements OnInit {
     
   }
 
-  private verificaCamposFormulario(formGroup: FormGroup){
+  private verificaCamposFormulario(formGroup: UntypedFormGroup){
 
     Object.keys(formGroup.controls).forEach(campo => {
 
       const controle = formGroup.get(campo);
       controle.markAsTouched();
-      if(controle instanceof FormGroup){
+      if(controle instanceof UntypedFormGroup){
         this.verificaCamposFormulario(controle);
       }
 

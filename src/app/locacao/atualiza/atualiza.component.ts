@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LocacaoService } from 'src/app/backend/locacao.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { FormataDataPipe } from 'src/app/pipes/formata-data.pipe';
 import { Pessoa } from 'src/app/backend/models/pessoa.model';
 import { Imovel } from 'src/app/backend/models/imovel.model';
@@ -15,7 +15,7 @@ import { LocacaoDTO } from 'src/app/backend/models/locacao.dto.model';
 })
 export class AtualizaComponent implements OnInit {
 
-  public formulario: FormGroup;
+  public formulario: UntypedFormGroup;
 
   public sucesso:boolean = false;
   public erro:boolean = false;
@@ -29,7 +29,7 @@ export class AtualizaComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private locacaoService:LocacaoService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private formataData: FormataDataPipe) { }
 
   ngOnInit() {
@@ -128,13 +128,13 @@ export class AtualizaComponent implements OnInit {
     
   }
 
-  private verificaCamposFormulario(formGroup: FormGroup){
+  private verificaCamposFormulario(formGroup: UntypedFormGroup){
 
     Object.keys(formGroup.controls).forEach(campo => {
 
       const controle = formGroup.get(campo);
       controle.markAsTouched();
-      if(controle instanceof FormGroup){
+      if(controle instanceof UntypedFormGroup){
         this.verificaCamposFormulario(controle);
       }
 

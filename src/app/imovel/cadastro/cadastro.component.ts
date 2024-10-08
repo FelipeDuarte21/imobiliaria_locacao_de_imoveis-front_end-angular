@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder , Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder , Validators } from '@angular/forms';
 import { ImovelService } from 'src/app/backend/imovel.service';
 import { Pessoa } from 'src/app/backend/models/pessoa.model';
 import { DesmascaraCEPPipe } from 'src/app/pipes/desmascara-cep.pipe';
@@ -15,7 +15,7 @@ export class CadastroComponent implements OnInit {
 
   public maskCEP = [/\d/,/\d/,'.',/\d/,/\d/,/\d/,'-',/\d/,/\d/,/\d/];
 
-  public formulario: FormGroup;
+  public formulario: UntypedFormGroup;
 
   public proprietarios:Array<Pessoa>;
 
@@ -25,7 +25,7 @@ export class CadastroComponent implements OnInit {
   public erro:boolean = false;
 
   constructor(
-    private fb:FormBuilder,
+    private fb:UntypedFormBuilder,
     private imovelService:ImovelService,
     private cepDesmasc: DesmascaraCEPPipe
   ) { }
@@ -85,13 +85,13 @@ export class CadastroComponent implements OnInit {
     
   }
 
-  private verificaCamposFormulario(formGroup: FormGroup){
+  private verificaCamposFormulario(formGroup: UntypedFormGroup){
 
     Object.keys(formGroup.controls).forEach(campo => {
 
       const controle = formGroup.get(campo);
       controle.markAsTouched();
-      if(controle instanceof FormGroup){
+      if(controle instanceof UntypedFormGroup){
         this.verificaCamposFormulario(controle);
       }
 

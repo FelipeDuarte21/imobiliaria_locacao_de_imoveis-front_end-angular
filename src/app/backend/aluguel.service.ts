@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Aluguel } from './models/aluguel.model';
 import { api_route } from './api.route';
@@ -11,7 +11,7 @@ export class AluguelService{
 
     private local_route:string = `${api_route}/aluguel`;
 
-    constructor(private http: Http){}
+    constructor(private http: HttpClient){}
 
     public buscarPorId(id:string):Observable<Aluguel>{
         return this.http.get(`${this.local_route}/${id}`).pipe(map(res => res.json()));

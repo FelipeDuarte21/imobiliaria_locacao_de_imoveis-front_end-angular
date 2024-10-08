@@ -12,7 +12,6 @@ import { InquilinoService } from './inquilino.service';
 import { ImovelService } from './imovel.service';
 import { Imovel } from './models/imovel.model';
 import { LocacaoDTO } from './models/locacao.dto.model';
-import { typeWithParameters } from '@angular/compiler/src/render3/util';
 
 @Injectable()
 export class LocacaoService{

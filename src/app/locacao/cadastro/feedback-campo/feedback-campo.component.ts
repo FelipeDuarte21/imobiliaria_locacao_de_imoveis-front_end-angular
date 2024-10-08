@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
   selector: 'feedback-campo',
@@ -9,7 +9,7 @@ import { FormControl } from '@angular/forms';
 export class FeedbackCampoComponent implements OnInit {
 
   @Input() mostrarErro: boolean;
-  @Input() campo: FormControl;
+  @Input() campo: UntypedFormControl;
 
   constructor() { }
 
