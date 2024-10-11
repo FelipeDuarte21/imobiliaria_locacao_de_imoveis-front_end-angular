@@ -1,0 +1,86 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-xl-12"> 
+          
+
+            <a routerLink="/locacao" class="btn btn-secondary mt-3">
+                <i class="fas fa-undo-alt mr-1"></i>Voltar
+            </a>
+
+            <div class="card mt-3 mb-4">
+
+                <div class="card-header">
+                    <i class="fas fa-fw fa-table mr-1"></i>Dados da Locação
+                </div>
+
+                <div class="card-body">
+
+                    <div class="row">
+
+                        <div class="col-xl-6">
+
+                            <div class="card mt-2">
+
+                                <div class="card-header">
+                                    <h5 class="card-title">Dados Gerais</h5>
+                                </div>
+
+                                <div class="card-body">
+
+                                    <h6 class="mb-0">Inquilino</h6>
+                                    <span>// ?? PESQUISAR ??? //</span>
+
+                                    <h6 class="mt-2 mb-0">Proprietário</h6>
+                                    <span>// ?? PESQUISAR ??? //</span>
+
+                                    <h6 class="mt-2 mb-0">Endereço</h6>
+                                    <span>{{locacao.imovel.endereco | endereco}}</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-xl-6">
+
+                            <div class="card mt-2">
+
+                                <div class="card-header">
+                                    <h5 class="card-title">Dados da Locação</h5>
+                                </div>
+
+                                <div class="card-body">
+
+                                    <h6 class="mb-0">Valor do Aluguel</h6>
+                                    <span>{{locacao.valor | currency: 'BRL'}}</span>
+
+                                    <h6 class="mt-2 mb-0">Data da Locação</h6>
+                                    <span>{{locacao.data}}</span>
+
+                                    <h6 class="mt-2 mb-0">Tempo de Contrato</h6>
+                                    <span>{{locacao.tempo}} meses</span>
+
+                                    <h6 class="mt-2 mb-0">Início de Contrato</h6>
+                                    <span>{{locacao.dataInicio}}</span>
+
+                                    <h6 class="mt-2 mb-0">Término de Contrato</h6>
+                                    <span>{{locacao.dataTermino}}</span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,82 @@
+<div class="container-fluid">
+    
+    <div class="row">
+
+        <div class="col-xl-12">
+
+            <a routerLink="novo" class="btn btn-primary mt-3 mr-1" data-toggle="tooltip" data-placement="top" title="Cadastrar imóvel">
+                <i class="fas fa-plus-square mr-1"></i>Novo
+            </a>
+
+            <a routerLink="disponiveis" class="btn btn-success mt-3" data-toggle="tooltip" data-placement="right" title="Imóveis Disponiveis">
+                <i class="fas fa-home mr-1"></i>Imóveis Disponíveis
+            </a>
+            
+            <div class="card mt-3 mb-4">
+
+                <div class="card-header">
+                    <i class="fas fa-fw fa-table mr-1"></i>Lista de Imóveis
+                </div>
+
+                <div class="card-body">
+
+                    <pesquisa (valor)="buscarPorNomeProprietario($event)" ></pesquisa>
+
+                    <div class="table-responsive-lg">
+
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead>
+                                <tr class="text-center">
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Proprietário</th>
+                                    <th scope="col">Endereço</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Selecionar</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">                                
+                                <tr *ngFor="let imovel of getImoveis()">
+                                    <td>{{imovel.id}}</td>
+                                    <td>???? /// PESQUISAR PRA COLOCAR O NOME //</td>
+                                    <td>{{imovel.endereco | endereco}}</td>
+                                    <td>
+                                        <span class='alert alert-success p-1' *ngIf="imovel.disponivel">Disponível</span>
+                                        <span class='alert alert-danger p-1' *ngIf="!imovel.disponivel">Alugado</span>
+                                    </td>
+                                    <td>
+                                        <a [routerLink]="['atualiza',imovel.id]" class="btn btn-primary btn-sm mr-1" data-toggle="tooltip" data-placement="top" title="Alterar dados">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a [routerLink]="['detalhe',imovel.id]" class="btn btn-primary btn-sm mr-1" data-toggle="tooltip" title="Visualizar dados">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        <button (click)="removerImovel(imovel.id)" type="button" class="btn btn-danger btn-sm" data-toggle="tooltip" title="Excluir">
+                                            <i class="fa fa-trash-alt"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr class="text-center">
+                                    <th scope="col">Id</th>
+                                    <th scope="col">Proprietário</th>
+                                    <th scope="col">Endereço</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Selecionar</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+
+                    </div>
+
+                    <paginacao [optPagina]="optPagina" (qtdPorPagina)="setSize($event)" [totalPagina]="getTotalPage()" (pagina)="buscarPorPagina($event)"></paginacao>
+                      
+                </div>
+
+            </div>
+                
+        </div>
+        
+    </div>
+
+</div>

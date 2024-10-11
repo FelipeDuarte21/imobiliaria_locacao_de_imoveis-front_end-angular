@@ -1,0 +1,291 @@
+<div class="container-fluid">
+    
+    <div class="row mb-3" >
+
+        <div class="col-xl-12">
+
+            <a routerLink="/inquilino" class="btn btn-secondary my-3">
+                <i class="fas fa-undo-alt mr-1 btn-voltar"></i>Voltar
+            </a>
+        
+                    
+            <div class="card mb-4">
+                        
+                <div class="card-header">
+                    <i class="fas fa-user-plus mr-1"></i>Cadastro de Inquilino
+                </div>
+                        
+                <div class="card-body">
+                                                
+                    <form [formGroup]="formulario" (ngSubmit)="onSubmit()" >
+    
+                        <div class="row justify-content-center mt-3">
+
+                            <div class="col-xl-9">
+
+                                <fieldset>
+                                    <legend>Dados Pessoais</legend>
+
+                                    <input type="hidden" formControlName="id" value="0">
+                                    
+                                    <div class="form-row">
+    
+                                        <div class="form-group col-xl-3">
+                                            <label for="cpf" class="mb-0">CPF</label>
+                                            <input type="text" formControlName="cpf" id="cpf" class="form-control"
+                                                autocomplete="off" [ngClass]="getClassErro('cpf')" (blur)="buscarPorCPF()"
+                                                    [textMask]="{mask: maskCPF}" >
+
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('cpf')" [campo]="formulario.get('cpf')"></feedback-campo>
+
+                                        </div>
+                                    
+                                        <div class="form-group col-xl-9">
+                                            <label for="nome" class="mb-0">Nome</label>
+                                            <input type="text" formControlName="nome" id="nome" class="form-control"
+                                                [ngClass]="getClassErro('nome')" autocomplete="off">
+                                            
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('nome')" [campo]="formulario.get('nome')"></feedback-campo>
+
+                                        </div>
+    
+                                    </div>
+                                    
+                                    <div class="form-row">
+    
+                                        <div class="form-group col-xl-4">
+                                            <label for="nacionalidade" class="mb-0">Nacionalidade</label>
+                                            <input type="text" formControlName="nacionalidade" id="nacionalidade" class="form-control" 
+                                                [ngClass]="getClassErro('nacionalidade')" autocomplete="off">
+                                            
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('nacionalidade')" [campo]="formulario.get('nacionalidade')"></feedback-campo>
+
+                                        </div>
+                                    
+                                        <div class="form-group col-xl-4">
+                                            <label for="dataNascimento" class="mb-0">Data de Nascimento</label>
+                                            <input type="date" formControlName="dataNascimento" id="dataNascimento" class="form-control" 
+                                                [ngClass]="getClassErro('dataNascimento')">
+                                            
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('dataNascimento')" [campo]="formulario.get('dataNascimento')"></feedback-campo>
+
+                                        </div>
+                                                                            
+                                        <div class="form-group col-xl-4">
+                                            <label for="estadoCivil" class="mb-0">Estado Civil</label>
+                                            <select formControlName="estadoCivil" id="estadoCivil" class="form-control" [ngClass]="getClassErro('estadoCivil')">
+                                                <option value="1">Solteiro(a)</option>
+                                                <option value="2">Casado(a)</option>
+                                                <option value="3">Separado(a)</option>
+                                                <option value="4">Divorciado(a)</option>
+                                                <option value="5">Viúvo(a)</option>
+                                            </select>
+
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('estadoCivil')" 
+                                             [campo]="formulario.get('estadoCivil')"></feedback-campo>
+
+                                        </div>
+    
+                                    </div>
+                                    
+                                    <div class="form-row">
+    
+                                        <div class="form-group col-xl-3">
+                                            <label for="identidade" class="mb-0">RG</label>
+                                            <input type="text" formControlName="identidade" id="identidade" class="form-control" 
+                                                 [ngClass]="getClassErro('identidade')" autocomplete="off">
+
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('identidade')" [campo]="formulario.get('identidade')"></feedback-campo>
+
+                                        </div>
+    
+                                        <div class="form-group col-xl-3">
+                                            <label for="orgaoEmissor" class="mb-0">Orgão Emissor</label>
+                                            <input type="text" formControlName="orgaoEmissor" id="orgaoEmissor" class="form-control" 
+                                                [ngClass]="getClassErro('orgaoEmissor')" autocomplete="off">
+
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('orgaoEmissor')" [campo]="formulario.get('orgaoEmissor')"></feedback-campo>
+
+                                        </div>
+                                        
+                                        <div class="form-group col-xl-4">
+                                            <label for="dataExpedicao" class="mb-0">Data de Expedição</label>
+                                            <input type="date" formControlName="dataExpedicao" id="dataExpedicao" class="form-control" 
+                                                [ngClass]="getClassErro('dataExpedicao')">
+
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('dataExpedicao')" [campo]="formulario.get('dataExpedicao')"></feedback-campo>
+
+                                        </div>
+
+                                        <div class="form-group col-xl-2">
+                                            <label for="salario" class="mb-0">Salario</label>
+                                            <input type="number" min="0.01" step="0.01" formControlName="salario" id="salario" class="form-control" 
+                                                [ngClass]="getClassErro('salario')">
+
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('salario')" [campo]="formulario.get('salario')"></feedback-campo>
+
+                                        </div>
+    
+                                    </div>
+    
+                                </fieldset>
+
+                            </div>
+
+                        </div>
+                                
+                        <div class="row justify-content-center mt-3">
+
+                            <div class="col-xl-9">
+
+                                <fieldset formGroupName="endereco">
+                                    <legend>Endereço</legend>
+                                
+                                    <div class="form-row">
+                                                        
+                                        <div class="form-group col-xl-4">
+                                            <label for="cep" class="mb-0">CEP</label>
+                                            <input type="text" formControlName="cep" id="cep" class="form-control" 
+                                             [ngClass]="getClassErro('endereco.cep')" autocomplete="off" (blur)="buscarPorCep()"
+                                                [textMask]="{mask:maskCEP}" >
+
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('endereco.cep')" [campo]="formulario.get('endereco.cep')"></feedback-campo>
+
+                                        </div>
+                                
+                                        <div class="form-group col-xl-2">
+                                            <label for="estado" class="mb-0">Estado</label>
+                                            <input type="text" formControlName="estado" id="estado" class="form-control" 
+                                                [ngClass]="getClassErro('endereco.estado')" autocomplete="off">
+
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('endereco.estado')" [campo]="formulario.get('endereco.estado')"></feedback-campo>
+
+                                        </div>
+                                
+                                        <div class="form-group col-xl-6">
+                                            <label for="cidade" class="mb-0">Cidade</label>
+                                            <input type="text" formControlName="cidade" id="cidade" class="form-control" 
+                                                [ngClass]="getClassErro('endereco.cidade')" autocomplete="off">
+
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('endereco.cidade')" 
+                                                [campo]="formulario.get('endereco.cidade')"></feedback-campo>
+
+                                        </div>
+    
+                                    </div>
+                                
+                                    <div class="form-row">
+    
+                                        <div class="form-group col-xl-3">
+                                            <label for="bairro" class="mb-0">Bairro</label>
+                                            <input type="text" formControlName="bairro" id="bairro" class="form-control" [ngClass]="getClassErro('endereco.bairro')" autocomplete="off">
+
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('endereco.bairro')" [campo]="formulario.get('endereco.bairro')"></feedback-campo>
+
+                                        </div>
+                                
+                                        <div class="form-group col-xl-7">
+                                            <label for="logradouro" class="mb-0">Logradouro</label>
+                                            <input type="text" formControlName="logradouro" id="logradouro" class="form-control" 
+                                                [ngClass]="getClassErro('endereco.logradouro')" autocomplete="of">
+
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('endereco.logradouro')" [campo]="formulario.get('endereco.logradouro')"></feedback-campo>
+
+                                        </div>
+                                
+                                        <div class="form-group col-xl-2">
+                                            <label for="numeroEnd" class="mb-0">Número</label>
+                                            <input type="text" formControlName="numero" id="numeroEnd" class="form-control" [ngClass]="getClassErro('endereco.numero')" autocomplete="of">
+
+                                            <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('endereco.numero')" [campo]="formulario.get('endereco.numero')"></feedback-campo>
+
+                                        </div>
+                                
+                                    </div>
+                                
+                                    <div class="form-group">
+                                        <label for="complemento" class="mb-0">Complemento</label>
+                                        <input type="text" formControlName="complemento" id="complemento" class="form-control" autocomplete="off" >
+                                    </div>
+    
+                                </fieldset>
+
+                            </div> 
+                        
+                        </div>
+                                
+                        <div class="row justify-content-center mt-3">
+    
+                            <div class="col-xl-9"> 
+
+                                <fieldset formGroupName="contatos">
+                                    <legend>Contatos</legend>
+                                
+                                    <div class="form-group">
+                                        <label for="email" class="mb-0">Email</label>
+                                        <input type="email" formControlName="email" id="email" class="form-control" [ngClass]="getClassErro('contatos.email')" autocomplete="off">
+
+                                        <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('contatos.email')" [campo]="formulario.get('contatos.email')"></feedback-campo>
+
+                                    </div>
+
+                                    <div class="row">
+                                        
+                                        <div class="col-xl-3">
+                                            <div class="form-group">
+                                                <input type="hidden" formControlName="idTelefone" value="0">
+                                                <label for="numeroT" class="mb-0">Telefone</label>
+                                                <input type="text" formControlName="telefone" id="numeroT" class="form-control" [ngClass]="getClassErro('contatos.telefone')" [textMask]="{mask:maskTelefone}">
+                                                
+                                                <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('contatos.telefone')" [campo]="formulario.get('contatos.telefone')"></feedback-campo>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xl-3">
+                                            <div class="form-group">
+                                                <input type="hidden" formControlName="idCelular" value="0">
+                                                <label for="numeroC" class="mb-0">Celular</label>
+                                                <input type="text" formControlName="celular" id="numeroC" class="form-control" [textMask]="{mask:maskCelular}" [ngClass]="getClassErro('contatos.celular')">
+
+                                                <feedback-campo class="invalid-feedback" [mostrarErro]="validarCampo('contatos.celular')" [campo]="formulario.get('contatos.celular')"></feedback-campo>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </fieldset>
+
+                                <button type="reset" class="btn btn-danger mt-2 float-right ">
+                                    <i class="fas fa-ban mr-1"></i>Cancelar
+                                </button>
+
+                                <button type="submit" class="btn btn-success mt-2 mr-2 float-right">
+                                    <i class="far fa-save mr-1"></i>Cadastrar
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+                    
+            </div>
+    
+
+            <div class="alert alert-success mt-3" *ngIf="sucesso">
+                <strong>Sucesso!</strong> Inquilino Cadastrado Com Sucesso!
+            </div>
+
+            <div class="alert alert-danger mt-3" *ngIf="erro">
+                <strong>Erro!</strong> Erro ao Cadastrar Inquilino!
+            </div>
+    
+        </div>
+    
+    </div>
+
+</div> 

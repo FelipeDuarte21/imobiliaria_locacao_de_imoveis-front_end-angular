@@ -1,0 +1,79 @@
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-xl-12">
+
+            <a routerLink="/aluguel" class="btn btn-secondary mt-3">
+                <i class="fas fa-undo-alt mr-1"></i>Voltar
+            </a>
+        
+            <div class="card mt-3 mb-4">
+
+                <div class="card-header">
+                    <i class="fas fa-fw fa-table mr-1"></i>Alugueis do Inquilino
+                </div>
+
+                <div class="card-body">
+                        
+                    <div class="card mt-2">
+
+                        <div class="card-header">
+                            <h5 class="card-title">Dados Gerais</h5>
+                        </div>
+
+                        <div class="card-body">
+
+                            <h6 class="mb-0">Inquilino</h6>
+                            <span>// ?? PESQUISAR ?? //</span>
+
+                            <h6 class="mt-2 mb-0">Endereço do Imóvel</h6>
+                            <span>// ?? PESQUISAR ?? //</span>
+
+                            <h6 class="mt-2 mb-0">Valor do Aluguel</h6>
+                            <span>// ?? PESQUISAR ?? //</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="table-responsive-lg">
+                        <table class="table table-bordered mt-2">
+                            <thead class="text-center">
+                                <tr>
+                                    <th scope="col">Data de Vencimento</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Data do Pagamento</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-center">
+                                <tr *ngFor="let a of alugueis">
+                                    <td>{{a?.dataVencimento}}</td>
+                                    <td>
+                                        <span class='alert alert-success p-1' *ngIf="a.quite">Pago</span>
+                                        <span class='alert alert-danger p-1' *ngIf="!a.quite">Não Pago</span>
+                                    </td>
+                                    <td *ngIf="!a.dataPagamento"></td>
+                                    <td *ngIf="a.dataPagamento">{{a?.dataPagamento}}</td>
+                                </tr>
+                            </tbody>
+                            <tfoot class="text-center">
+                                <tr>
+                                    <th scope="col">Data de Vencimento</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Data do Pagamento</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+
+                    <paginacao [optPagina]="optPagina" (qtdPorPagina)="setSize($event)" [totalPagina]="getTotalPage()" (pagina)="buscarPorPagina($event)"></paginacao>
+                           
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

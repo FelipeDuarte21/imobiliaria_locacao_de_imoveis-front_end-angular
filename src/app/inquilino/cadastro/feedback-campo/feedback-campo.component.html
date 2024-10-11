@@ -1,6 +1,0 @@
-<div *ngIf="getErro()">
-    <ng-container *ngIf="campo.errors.required">Campo Obrigatório</ng-container>
-    <ng-container *ngIf="campo.errors.pattern">Campo Fora do Formato!</ng-container>
-    <ng-container *ngIf="campo.errors.maxlength">Campo Até {{campo._rawValidators[1].maxlength}} caracteres</ng-container>
-    <ng-container *ngIf="campo.errors.email">Email Fora do Formato!</ng-container>
-</div>
